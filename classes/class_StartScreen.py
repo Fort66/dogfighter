@@ -1,6 +1,5 @@
 from pygame.image import load
 from pygame.transform import scale
-from pygame_widgets.button import Button, ButtonArray
 
 from icecream import ic
 
@@ -29,12 +28,10 @@ class StartScreen:
             pos=(win.screen.get_width() //2 - 100,
             win.screen.get_height() - 200),
             size=(200, 50),
-            bgColor=(70, 130, 180),
-            textColor='white',
             text='Начать игру',
-            hoverColor=(23, 74, 117),
+            hover_color=(23, 74, 117),
             rounding=20,
-            onClickReference=self.change_start
+            on_click=lambda: self.change_start()
         )
 
 

@@ -108,52 +108,124 @@
 # quit()
 
 
-import pygame
-import gif_pygame
-import sys
+# import pygame
+# import gif_pygame
+# import sys
 
-screen = pygame.display.set_mode((512, 512))
-clock = pygame.Clock()
+# screen = pygame.display.set_mode((512, 512))
+# clock = pygame.Clock()
 
-# Loading from a file. You can specify the number of loops, but by default it is infinite
-animation_gif = gif_pygame.load("images/supawork3.gif")
-animation_gif = gif_pygame.transform.scale_by(animation_gif, .4, new_gif=True)
-
-
-
-# for surface in animation_gif.get_surfaces():
-#     surface = gif_pygame.transform.scale_by(surface, .4)
-rect = animation_gif.get_rect(center=(256, 256))
+# # Loading from a file. You can specify the number of loops, but by default it is infinite
+# animation_gif = gif_pygame.load("images/supawork3.gif")
+# animation_gif = gif_pygame.transform.scale_by(animation_gif, .4, new_gif=True)
 
 
-# Creating an animation from a list of surfaces
-s1 = pygame.Surface((20, 0))
-s2 = pygame.Surface((20, 0))
-s3 = pygame.Surface((20, 0))
-s1.fill((255, 0, 0))
-s2.fill((0, 255, 0))
-s3.fill((0, 0, 255))
 
-# For every list, first index must be the surface and second must be the duration in seconds. You can specify the number of loops, but by default it is infinite
-animation_surfs = gif_pygame.GIFPygame([[s1, 1], [s2, 1], [s3, 0.5]])
+# # for surface in animation_gif.get_surfaces():
+# #     surface = gif_pygame.transform.scale_by(surface, .4)
+# rect = animation_gif.get_rect(center=(256, 256))
+
+
+# # Creating an animation from a list of surfaces
+# s1 = pygame.Surface((20, 0))
+# s2 = pygame.Surface((20, 0))
+# s3 = pygame.Surface((20, 0))
+# s1.fill((255, 0, 0))
+# s2.fill((0, 255, 0))
+# s3.fill((0, 0, 255))
+
+# # For every list, first index must be the surface and second must be the duration in seconds. You can specify the number of loops, but by default it is infinite
+# animation_surfs = gif_pygame.GIFPygame([[s1, 1], [s2, 1], [s3, 0.5]])
 
 # Main loop
+# while True:
+#     clock.tick(60)
+
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             pygame.quit()
+#             sys.exit()
+
+#     screen.fill((0, 0, 0))
+
+#     # This module provides 2 methods for rendering the animation.
+
+#     # Method 1: using .render() | Animates and renders into the screen inside the function itself. You must pass down the surface to blit to and the location
+#     animation_gif.render(screen, rect)
+
+#     # Method 2: using .blit_ready() | Animates the animation and returns the current frame. This was meant to be used alongside pygame.Surface().blit()
+#     # screen.blit(animation_surfs.blit_ready(), (70, 70))
+
+#     pygame.display.flip()
+
+
+
+import pygame as pg
+# import pygame_widgets as pw
+from pygame_widgets.button import Button
+import sys
+
+from Buttons.class_ButtonText import ButtonText
+from Buttons.class_ButtonImage import ButtonImage
+
+screen = pg.display.set_mode((512, 512))
+clock = pg.time.Clock()
+
+
+def test(*args, **kwargs):
+    if args:
+        print(args)
+    if kwargs:
+        for key, value in kwargs.items():
+            print(key, value)
+    if not args and not kwargs:
+        print('None')
+
+btn = ButtonText(
+        surface=screen,
+        pos=(256, 256),
+        size=(200, 50),
+        # bg_color='red',
+        # text='Начать игру',
+        on_click=lambda: test(1, 2, 3, 4, 5, name='John', age=25),
+        rounding=20
+
+)
+
+# btn = ButtonImage(
+#     pos=(256, 256),
+#     size=(200, 50),
+#     text='Начать игру',
+    
+# )
+
+
+# btn = Button(
+#     win=screen,
+#     x=256,
+#     y=256,
+#     width=200,
+#     height=50,
+#     text='Начать игру',
+#     inactiveColour='SteelBlue',
+#     hoverColour='RoyalBlue',
+#     shadowColour='grey',
+#     pressedColour='dark'
+# )
+
+
 while True:
     clock.tick(60)
+    screen.fill('SkyBlue')
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
+    # events = pg.event.get()
+    for event in pg.event.get():
+        # btn.handleEvent(event)
+        if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
+            pg.quit()
             sys.exit()
 
-    screen.fill((0, 0, 0))
 
-    # This module provides 2 methods for rendering the animation.
-
-    # Method 1: using .render() | Animates and renders into the screen inside the function itself. You must pass down the surface to blit to and the location
-    animation_gif.render(screen, rect)
-
-    # Method 2: using .blit_ready() | Animates the animation and returns the current frame. This was meant to be used alongside pygame.Surface().blit()
-    # screen.blit(animation_surfs.blit_ready(), (70, 70))
-
-    pygame.display.flip()
+    btn.update()
+    # pw.update(pg.event.get())
+    pg.display.update()
