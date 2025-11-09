@@ -166,9 +166,9 @@ from pygame_widgets.button import Button
 import sys
 
 from Buttons.class_ButtonText import ButtonText
-from Buttons.class_ButtonImage import ButtonImage
+# from Buttons.class_ButtonImage import ButtonImage
 
-screen = pg.display.set_mode((512, 512))
+screen = pg.display.set_mode((512, 512), pg.RESIZABLE)
 clock = pg.time.Clock()
 
 
@@ -181,6 +181,9 @@ def test(*args, **kwargs):
     if not args and not kwargs:
         print('None')
 
+image = pg.transform.scale(pg.image.load('images/screens/start.jpg').convert(), screen.get_size())
+im_rect = image.get_rect()
+
 btn = ButtonText(
         surface=screen,
         pos=(256, 256),
@@ -191,27 +194,6 @@ btn = ButtonText(
         rounding=20
 
 )
-
-# btn = ButtonImage(
-#     pos=(256, 256),
-#     size=(200, 50),
-#     text='Начать игру',
-    
-# )
-
-
-# btn = Button(
-#     win=screen,
-#     x=256,
-#     y=256,
-#     width=200,
-#     height=50,
-#     text='Начать игру',
-#     inactiveColour='SteelBlue',
-#     hoverColour='RoyalBlue',
-#     shadowColour='grey',
-#     pressedColour='dark'
-# )
 
 
 while True:
@@ -225,6 +207,7 @@ while True:
             pg.quit()
             sys.exit()
 
+    screen.blit(image, im_rect)
 
     btn.update()
     # pw.update(pg.event.get())

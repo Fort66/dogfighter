@@ -5,46 +5,40 @@ from icecream import ic
 
 from .class_Screen import win
 from Buttons.class_ButtonText import ButtonText
+from .class_CreateObjects import create_objects
+from .class_Signals import signals
 
 class StartScreen:
+    __instance = None
+
+    def __new__(cls):
+        if cls.__instance is None:
+            cls.__instance = super().__new__(cls)
+        return cls.__instance
+
     def __init__(self):
-        self.start = True
         self.image =scale(load('images/screens/start.jpg').convert(), win.screen.get_size())
         self.rect = self.image.get_rect()
-        # self.btn = Button(
-        #     win.screen,
-        #     x=win.screen.get_width() //2 - 100,
-        #     y=win.screen.get_height() - 200,
-        #     width=200,
-        #     height=50,
-        #     text='Начать игру',
-        #     onClick=lambda:self.change_start(),
-        #     colour=(70, 130, 180),
-        #     hoverColour=(23, 74, 117),
-        #     radius=20,
-        #     textColour='white'
-        # )
+
         self.btn = ButtonText(
-            pos=(win.screen.get_width() //2 - 100,
-            win.screen.get_height() - 200),
+            surface=self.image,
+            pos=(self.rect[2] //2,
+            self.rect[3] - 200),
             size=(200, 50),
             text='Начать игру',
-            hover_color=(23, 74, 117),
             rounding=20,
             on_click=lambda: self.change_start()
         )
 
 
     def change_start(self):
-        self.start = not self.start
-
-    # def transfer_events(self, events):
-    #     self.events = events
+        signals.change_signals('start')
+        if self.btn.is_clicked:
+            create_objects.create()
 
     def update(self):
         win.screen.blit(self.image, self.rect)
-        self.btn.update(self.image)
-        # self.btn.listen(self.events)
-        # self.btn.draw()
-        # self.btn.update(self.events)
+        self.btn.update()
 
+
+start_screen = StartScreen()

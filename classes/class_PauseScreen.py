@@ -1,34 +1,38 @@
 from pygame.image import load
 from pygame.transform import scale
-from pygame_widgets.textbox import TextBox
-# from ui.class_ButtonText import ButtonText
 from icecream import ic
-
+# from pygame_widgets.textbox import TextBox
+from Buttons.class_ButtonText import ButtonText
 from .class_Screen import win
+from .class_Signals import signals
 
 class PauseScreen:
+    __instance = None
+    def __new__(cls):
+        if cls.__instance is None:
+            cls.__instance = super().__new__(cls)
+        return cls.__instance
+
     def __init__(self):
-        self.pause = False
         self.image =scale(load('images/screens/pause.jpg').convert(), win.screen.get_size())
         self.rect = self.image.get_rect()
 
-        self.label = TextBox(
-            win.screen,
-            win.screen.get_width() //2 - 100,
-            win.screen.get_height() // 2 - 50,
-            width=250,
-            height=50,
-            placeholderText='F2 - продолжить игру',
-            colour=(70, 130, 180),
-            borderColour=(23, 74, 117),
-            placeholderTextColour='white',
+        self.btn = ButtonText(
+            surface=self.image,
+            pos=(self.rect[2] //2, self.rect[3] - 200),
+            size=(200, 50),
+            text='F2 - продолжить',
+            on_enabled=False,
         )
 
 
     def change_pause(self):
-        self.pause = not self.pause
+        signals.change_signals('pause')
 
 
     def update(self):
         win.screen.blit(self.image, self.rect)
-        # self.label.draw()
+        self.btn.update()
+
+
+pause_screen = PauseScreen()

@@ -32,11 +32,13 @@ class ButtonText(Sprite):
         hover_color (str or tuple): Цвет при наведении мыши.
         click_color (str or tuple): Цвет при нажатии.
         disabled_color (str or tuple): Цвет текста, когда кнопка отключена.
+        disabled_text_color (str or tuple): Цвет текста, когда кнопка отключена.
         rounding (int): Радиус скругления углов кнопки.
         on_enabled (bool): Включена ли кнопка (реагирует на события).
         is_hovered (bool): Наведена ли мышь на кнопку.
         allow_clicking (bool): Разрешён ли клик (анти-спам).
         on_click (callable): Функция, вызываемая при клике.
+        is_clicked (bool): Нажата ли кнопка.
         image (Surface): Поверхность кнопки с прозрачностью.
         rect (Rect): Прямоугольник для позиционирования и коллизий.
         mask_image (Surface): Маска для более точной отрисовки (не используется в текущей версии).
@@ -55,6 +57,7 @@ class ButtonText(Sprite):
         self.disabled_color: str|tuple = kwargs.get('disabled_color','#2F4F4F')
         self.bg_color: str|tuple = kwargs.get('bg_color','#0B61A4')
         self.text_color: str|tuple = kwargs.get('text_color','#FFFFFF')
+        self.disabled_text_color: str|tuple = kwargs.get('disabled_text_color','#FFFFFF')
         self.hover_color: str|tuple = kwargs.get('hover_color','#033E6B')
         self.click_color: str|tuple = kwargs.get('click_color','#66A3D2')
         self.color: str|tuple = kwargs.get('color', self.bg_color)
@@ -64,6 +67,7 @@ class ButtonText(Sprite):
         self.on_enabled: bool = kwargs.get('on_enabled', True)
         self.is_hovered: bool = kwargs.get('is_hovered', False)
         self.allow_clicking: bool = kwargs.get('allow_clicked', True)
+        self.is_clicked: bool = kwargs.get('is_clicked', False)
         self.on_click: object = kwargs.get('on_click', lambda *args, **kwargs: None)
 
         self.image = Surface(self.size, pg.SRCALPHA)
@@ -92,20 +96,26 @@ class ButtonText(Sprite):
 
             if self.keys[0] and self.is_hovered:
                 if self.allow_clicking and self.on_click:
+                    self.is_clicked = True
                     self.on_click()
                     self.allow_clicking = False
 
             else:
                 self.allow_clicking = True
+                self.is_clicked = False
+
 
     def update(self):
         self.handleEvent()
-        if self.keys[0] and self.is_hovered:
-            self.color = self.click_color
-        elif self.is_hovered:
-            self.color = self.hover_color
+        if self.on_enabled:
+            if self.keys[0] and self.is_hovered:
+                self.color = self.click_color
+            elif self.is_hovered:
+                self.color = self.hover_color
+            else:
+                self.color = self.bg_color
         else:
-            self.color = self.bg_color
+            self.color = self.disabled_color
 
         pg.draw.rect(self.surface, self.color, self.rect, border_radius = self.rounding)
         self.surface.blit(self.mask_image, self.rect)
@@ -114,8 +124,8 @@ class ButtonText(Sprite):
             if self.on_enabled:
                 text_surface = self.font.render(self.text, True, self.text_color)
             else:
-                text_surface = self.font.render(self.text, True, self.disabled_color)
-                text_surface.fill(self.disabled_color, special_flags = pg.BLEND_RGBA_MULT)
+                text_surface = self.font.render(self.text, True, self.disabled_text_color)
+                text_surface.fill(self.disabled_text_color, special_flags = pg.BLEND_RGBA_MULT)
             text_rect = text_surface.get_rect(center = self.rect.center)
             self.surface.blit(text_surface, text_rect)
 
