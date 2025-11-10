@@ -6,9 +6,9 @@ dist/
 wheels/
 *.egg-info
 .gitignore
-test
-test_button
-torpy_exmpl
+test.py
+test_button.py
+torpy_exmpl.py
 
 # Virtual environments
 .venv
