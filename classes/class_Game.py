@@ -5,13 +5,11 @@ from pygame.locals import QUIT, K_ESCAPE, KEYDOWN, K_F2
 
 
 from icecream import ic
+import os
 
 # from OpenGL.GL import *
 # from OpenGL.GLU import *
 
-# from classes.class_Player import Player, player_group
-# from classes.class_Rockets import Rocket, rockets_group
-# from classes.class_Clouds import Clouds, cloud_group
 from .class_Screen import win
 from .class_AllSprites import all_sprites
 from .class_StartScreen import start_screen
@@ -21,7 +19,7 @@ from .class_CreateObjects import create_objects
 from .class_SpritesGroups import groups
 from .class_Signals import signals
 
-import os
+
 
 # os.environ['SDL_VIDEODRIVER'] = 'x11'
 # export SDL_VIDEODRIVER=wayland

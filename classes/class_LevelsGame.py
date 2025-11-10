@@ -10,7 +10,7 @@ class LevelsGame:
         'attack_min': 0,
         'attack_max': 2,
         'enemies_min': 6,
-        'enemier_max': 15,
+        'enemies_max': 15,
         'player_score': 0,
     }
 
@@ -21,7 +21,10 @@ class LevelsGame:
 
     def __init__(self):
         self.__dict__ = self.__levels_dict
-        self.rockets_amount = round(lerp(self.enemies_min, self.enemies_max, self.attack_min / self.attack_max))
+        self.enemies_amount = round(lerp(self.enemies_min, self.enemies_max, self.attack_min / self.attack_max))
 
     def update_levels(self):
         self.enemies_amount = round(lerp(self.enemies_min, self.enemies_max, self.attack_min / self.attack_max))
+
+
+levels_game = LevelsGame()

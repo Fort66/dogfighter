@@ -10,10 +10,10 @@ from .class_SpritesGroups import groups
 
 enemies = [
     ['images/plane1.png', (0, 0), .18],
-    ['images/plane2.png', (0, 0), .15],
-    ['images/plane3.png', (0, 0), .15],
-    ['images/plane4.png', (0, 0), .2],
-    ['images/plane5.png', (0, 0), .2],
+    ['images/plane2.png', (0, 0), .18],
+    ['images/plane3.png', (0, 0), .18],
+    ['images/plane4.png', (0, 0), .22],
+    ['images/plane5.png', (0, 0), .22],
 ]
 
 

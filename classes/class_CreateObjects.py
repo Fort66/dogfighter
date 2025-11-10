@@ -1,8 +1,10 @@
+from random import choice
+
 from .class_Player import Player
 from .class_Enemies import Enemies
 from .class_Clouds import Clouds
+from .class_LevelsGame import levels_game
 
-from random import choice
 
 clouds_images = [
     # 'images/cloud1.png',
@@ -23,7 +25,7 @@ class CreateObjects:
 
     def create(self):
         self.player = Player()
-        self.enemies = [Enemies() for i in range(6)]
+        self.enemies = [Enemies() for i in range(levels_game.enemies_amount)]
         self.clouds = [Clouds(choice(clouds_images)) for _ in range(15)]
 
 create_objects = CreateObjects()
