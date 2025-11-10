@@ -2,7 +2,7 @@ from pygame import quit
 
 from icecream import ic
 
-from classes.class_Game import Game
+from classes.logic.class_Game import Game
 
 # from loguru import logger
 

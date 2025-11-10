@@ -4,9 +4,9 @@ from pygame.transform import scale
 from icecream import ic
 
 from .class_Screen import win
-from Buttons.class_ButtonText import ButtonText
-from .class_CreateObjects import create_objects
-from .class_Signals import signals
+from ui.buttons.class_ButtonText import ButtonText
+from ..logic.class_CreateObjects import create_objects
+from ..logic.class_Signals import signals
 
 class StartScreen:
     __instance = None

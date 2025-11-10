@@ -6,7 +6,7 @@ from pygame.sprite import Group, Sprite
 # from classes.class_AllSprites import all_sprites
 
 # player_rockets_group = Group()
-from .class_Screen import win
+from ..screens.class_Screen import win
 
 class PlayerShoot(Sprite):
     def __init__(self, pos, speed):

@@ -1,8 +1,8 @@
 from random import choice
 
-from .class_Player import Player
-from .class_Enemies import Enemies
-from .class_Clouds import Clouds
+from ..units.class_Player import Player
+from ..units.class_Enemies import Enemies
+from ..units.class_Clouds import Clouds
 from .class_LevelsGame import levels_game
 
 

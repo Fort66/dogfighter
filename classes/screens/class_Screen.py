@@ -1,5 +1,8 @@
+import pygame as pg
 from pygame.display import set_mode, set_caption, get_desktop_sizes
 from pygame.locals import QUIT, K_ESCAPE, KEYDOWN, FULLSCREEN, DOUBLEBUF, OPENGL, OPENGLBLIT
+
+pg.init()
 
 class Screen:
     __instance = None

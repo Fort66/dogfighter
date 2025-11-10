@@ -10,13 +10,13 @@ import os
 # from OpenGL.GL import *
 # from OpenGL.GLU import *
 
-from .class_Screen import win
-from .class_AllSprites import all_sprites
-from .class_StartScreen import start_screen
-from .class_PauseScreen import pause_screen
-from .class_GameOverScreen import game_over_screen
+from ..screens.class_Screen import win
+from ..groups.class_AllSprites import all_sprites
+from ..screens.class_StartScreen import start_screen
+from ..screens.class_PauseScreen import pause_screen
+from ..screens.class_GameOverScreen import game_over_screen
 from .class_CreateObjects import create_objects
-from .class_SpritesGroups import groups
+from ..groups.class_SpritesGroups import groups
 from .class_Signals import signals
 
 

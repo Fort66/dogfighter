@@ -4,8 +4,8 @@ from pygame.transform import scale
 # from pygame_widgets.textbox import TextBox
 from icecream import ic
 
-from Buttons.class_ButtonText import ButtonText
-from .class_Signals import signals
+from ui.buttons.class_ButtonText import ButtonText
+from ..logic.class_Signals import signals
 from .class_Screen import win
 
 class GameOverScreen:

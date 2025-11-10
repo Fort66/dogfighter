@@ -4,16 +4,16 @@ from pygame.sprite import Sprite
 
 from random import choice, uniform
 
-from .class_AllSprites import all_sprites
-from .class_Screen import win
-from .class_SpritesGroups import groups
+from ..groups.class_AllSprites import all_sprites
+from ..screens.class_Screen import win
+from ..groups.class_SpritesGroups import groups
 
 enemies = [
-    ['images/plane1.png', (0, 0), .18],
-    ['images/plane2.png', (0, 0), .18],
-    ['images/plane3.png', (0, 0), .18],
-    ['images/plane4.png', (0, 0), .22],
-    ['images/plane5.png', (0, 0), .22],
+    ['images/plane1.png', (0, 0), .09],
+    ['images/plane2.png', (0, 0), .09],
+    ['images/plane3.png', (0, 0), .09],
+    ['images/plane4.png', (0, 0), .11],
+    ['images/plane5.png', (0, 0), .11],
 ]
 
 
@@ -22,7 +22,7 @@ class Enemies(Sprite):
         Sprite.__init__(self)
         enemy = choice(enemies)
         self.image = scale_by(load(enemy[0]).convert_alpha(), enemy[-1])
-        self.speed = uniform(5, 10)
+        self.speed = uniform(3, 5)
         self.gen_pos()
         self._layer = 2
         self.direction_x = 0

@@ -4,8 +4,8 @@ from pygame.sprite import Sprite, Group
 
 from random import uniform, randint, choice
 
-from .class_AllSprites import all_sprites
-from .class_Screen import win
+from ..groups.class_AllSprites import all_sprites
+from ..screens.class_Screen import win
 
 cloud_group = Group()
 
@@ -24,7 +24,7 @@ class Clouds(Sprite):
                 self.scale_value = .8
         self.image = scale_by(load(path).convert_alpha(), self.scale_value)
         self.rect = self.image.get_rect()
-        self.speed = uniform(2, 4)
+        self.speed = uniform(1, 3)
         self.gen_pos()
         cloud_group.add(self)
         all_sprites.add(self)

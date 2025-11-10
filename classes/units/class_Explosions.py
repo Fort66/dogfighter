@@ -2,8 +2,8 @@ import gif_pygame as gif
 
 from pygame.sprite import Sprite
 
-from .class_AllSprites import all_sprites
-from .class_Screen import win
+from ..groups.class_AllSprites import all_sprites
+from ..screens.class_Screen import win
 
 
 class Explosions(Sprite):

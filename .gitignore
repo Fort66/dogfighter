@@ -5,6 +5,10 @@ build/
 dist/
 wheels/
 *.egg-info
+.gitignore
+test
+test_button
+torpy_exmpl
 
 # Virtual environments
 .venv

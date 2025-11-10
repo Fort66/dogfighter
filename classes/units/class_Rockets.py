@@ -5,9 +5,9 @@ from random import choice, uniform
 
 from pygame.sprite import Sprite
 
-from .class_AllSprites import all_sprites
-from .class_Screen import win
-from .class_SpritesGroups import groups
+from ..groups.class_AllSprites import all_sprites
+from ..screens.class_Screen import win
+from ..groups.class_SpritesGroups import groups
 
 
 class Enemies(Sprite):

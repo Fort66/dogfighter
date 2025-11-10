@@ -2,9 +2,9 @@ from pygame.image import load
 from pygame.transform import scale
 from icecream import ic
 # from pygame_widgets.textbox import TextBox
-from Buttons.class_ButtonText import ButtonText
+from ui.buttons.class_ButtonText import ButtonText
 from .class_Screen import win
-from .class_Signals import signals
+from ..logic.class_Signals import signals
 
 class PauseScreen:
     __instance = None
